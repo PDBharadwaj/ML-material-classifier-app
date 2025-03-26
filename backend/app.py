@@ -105,15 +105,18 @@ CORS(app)  # Enable CORS for all routes
 
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-model_path = os.path.join(BASE_DIR, "/random_forest_model.pkl")
-labelencoder_path = os.path.join(BASE_DIR, "/label_encoder.pkl")
-scaler_path = os.path.join(BASE_DIR, "/scaler.pkl")
+model_path = os.path.join(BASE_DIR, "random_forest_model.pkl")
+labelencoder_path = os.path.join(BASE_DIR, "label_encoder.pkl")
+scaler_path = os.path.join(BASE_DIR, "scaler.pkl")
 
 
 try:
-    labelencoder = joblib.load("/label_encoder.pkl")
-    scaler = joblib.load("/scaler.pkl")
-    model = joblib.load("/random_forest_model.pkl")
+    # labelencoder = joblib.load("label_encoder.pkl")
+    # scaler = joblib.load("scaler.pkl")
+    # model = joblib.load("random_forest_model.pkl")
+    labelencoder = joblib.load(labelencoder_path)
+    scaler = joblib.load(scaler_path)
+    model = joblib.load(model_path)
     print("Model and preprocessing objects loaded successfully.")
 except Exception as e:
     print(f"Error loading model or preprocessing objects: {e}")
