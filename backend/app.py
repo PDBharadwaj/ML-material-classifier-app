@@ -91,16 +91,29 @@ CORS(app)  # Enable CORS for all routes
 # Load the trained model and related objects
 
 
+# print("Current Working Directory:", os.getcwd())
+
+# # Print list of files in the directory
+# print("Files in Directory:", os.listdir("."))
+
+# # Print absolute path of model files
+# print("Expected Model Paths:")
+# print(os.path.abspath("random_forest_model.pkl"))
+# print(os.path.abspath("label_encoder.pkl"))
+# print(os.path.abspath("scaler.pkl"))
+
+
+
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-model_path = os.path.join(BASE_DIR, "random_forest_model.pkl")
-labelencoder_path = os.path.join(BASE_DIR, "label_encoder.pkl")
-scaler_path = os.path.join(BASE_DIR, "scaler.pkl")
+model_path = os.path.join(BASE_DIR, "/random_forest_model.pkl")
+labelencoder_path = os.path.join(BASE_DIR, "/label_encoder.pkl")
+scaler_path = os.path.join(BASE_DIR, "/scaler.pkl")
 
 
 try:
-    labelencoder = joblib.load("label_encoder.pkl")
-    scaler = joblib.load("scaler.pkl")
-    model = joblib.load("random_forest_model.pkl")
+    labelencoder = joblib.load("/label_encoder.pkl")
+    scaler = joblib.load("/scaler.pkl")
+    model = joblib.load("/random_forest_model.pkl")
     print("Model and preprocessing objects loaded successfully.")
 except Exception as e:
     print(f"Error loading model or preprocessing objects: {e}")
@@ -133,7 +146,7 @@ def predict():
         return jsonify({"error": str(e)}), 500
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=False)
 
 
 
