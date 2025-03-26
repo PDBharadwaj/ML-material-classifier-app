@@ -82,12 +82,21 @@ from flask import Flask, request, jsonify
 import joblib
 import numpy as np
 from flask_cors import CORS
+import os
 
 app = Flask(__name__)
 CORS(app)  # Enable CORS for all routes
 # CORS(app, origins=[""])  # Enable CORS for all routes
 
 # Load the trained model and related objects
+
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+model_path = os.path.join(BASE_DIR, "random_forest_model.pkl")
+labelencoder_path = os.path.join(BASE_DIR, "label_encoder.pkl")
+scaler_path = os.path.join(BASE_DIR, "scaler.pkl")
+
+
 try:
     model = joblib.load("random_forest_model.pkl")
     labelencoder = joblib.load("label_encoder.pkl")
