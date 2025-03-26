@@ -15,12 +15,16 @@ function App() {
   const predictMaterial = async () => {
     try {
         const featureKeys = ["Su", "Sy", "E", "G", "mu", "Ro"];
+
+        const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || "http://127.0.0.1:5000";
+
+
         const featureObject = featureKeys.reduce((obj, key, index) => {
             obj[key] = Number(features[index]);
             return obj;
         }, {});
 
-        const response = await axios.post("http://127.0.0.1:5000/predict", featureObject, {
+        const response = await axios.post(`${API_BASE_URL}/predict`, featureObject, {
             headers: {
                 "Content-Type": "application/json"
             }
