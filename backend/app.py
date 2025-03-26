@@ -98,9 +98,9 @@ scaler_path = os.path.join(BASE_DIR, "scaler.pkl")
 
 
 try:
-    model = joblib.load("random_forest_model.pkl")
     labelencoder = joblib.load("label_encoder.pkl")
     scaler = joblib.load("scaler.pkl")
+    model = joblib.load("random_forest_model.pkl")
     print("Model and preprocessing objects loaded successfully.")
 except Exception as e:
     print(f"Error loading model or preprocessing objects: {e}")
